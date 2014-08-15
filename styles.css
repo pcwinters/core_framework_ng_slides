@@ -1,10 +1,42 @@
 .no-support-message { display:none; }
 .impress-not-supported .no-support-message { display:block; }
 
-body { background:#EBEBEB; font:50px "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; color:#333; }
-.step { width:940px; margin:0 auto 24px auto; text-align:center; }
+html, body, .step {
+}
+
+body { 
+	background:#EBEBEB; 
+	font:30px "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+	color:#333; 
+}
+
+.step { 
+	width: 940px;
+	margin:0 auto 24px auto;
+	text-align: center;
+	transition: opacity .35s ease;
+}
+
+.step:not(.active){
+	opacity: 0.2;
+}
 
 pre {
+	display: inline;
+	font-size: .8em;
+}
+
+pre.example {
+	font-size: inherit;
+	display: block;
 	font-size: 20px;
 	text-align: left;
+}
+
+.sub-note {
+	font-size: 15px;
+}
+
+table td pre.example {
+	margin: inherit 20px;
 }

@@ -11,46 +11,107 @@
 			</div>
 			
 			<div class="step" data-scale="1">
-				Understanding AngularJS
+				<h1>AngularJS Basics</h1>
 			</div>
 				<div class="step" data-y="500" data-scale=".5">
-					<h1>$scope</h1>
+					<h2>$scope</h2>
 					<p>the big angular data model</p>
 				</div>
 
 					<div class="step" data-y="500" data-rotate-y="90" data-rotate-x="-90" data-z="-500" data-x="250" data-scale=".5">
-						<p>All data and state needed to </p>
+						<div>An application is bootstrapped with a <pre>$rootScope</pre></div>
+						<pre class="example">
+angular.module('myApp', []).run(function($rootScope){
+	$rootScope.appName = 'myApp';
+});
+						</pre>
 					</div>
-				
+					
+					<div class="step" data-y="500" data-rotate-y="90" data-rotate-x="-90" data-z="-1000" data-x="250" data-scale=".5">
+						<p>Scopes are forked to create children</p>
+						<pre class="example">
+angular.module('myApp', []).run(function($rootScope){
+	$rootScope.appName = 'myApp';
+	$childScope = $rootScope.$new();
+	expect($childScope.appName).toEqual('myApp');
+	expect($childScope).not.toEqual($rootScope);
+});
+						</pre>
+						<p class="sub-note">Manually forking $new scopes is exceedingly rare. This is generally managed by directives.</p>
+						<p class="sub-note">Scopes prototypically inherit from parents; more in common gotchas</p>
+					</div>
+
+					<div class="step" data-y="500" data-rotate-y="90" data-rotate-x="-90" data-z="-1500" data-x="250" data-scale=".5">
+						<p>Sibling scopes</p>
+						<pre class="example">
+angular.module('myApp', []).run(function($rootScope){
+	$rootScope.appName = 'myApp';
+	$childScopes = [$rootScope.$new(), $rootScope.$new()]
+	_.each($childScopes, function($scope, i){
+		$scope.$index = i;
+	});
+	
+	expect($rootScope.$index).toBeUndefined();
+	_.each($childScopes, function($scope){
+		expect($scope.appName).toEqual('myApp');
+	});
+	expect(_.pluck($childScopes, '$index')).toEqual([0,1])
+});
+						</pre>						
+					</div>
+
+					<div class="step" data-y="500" data-rotate-y="90" data-rotate-x="-90" data-z="-2000" data-x="250" data-scale=".5">
+						<h3>Scopes and the DOM</h3>
+						<p>Every DOM element is linked to a scope</p>
+						<div>
+							<pre class="example left">
+$scope.items = [
+	{name: 'Item1'},
+	{name: 'Item2'}
+]</pre>
+							<pre class="example right">
+li(ng-repeat="item in items")
+	span {{item.name}}</pre>
+						</div>							
+						<p class="sub-note">You'll hear the terms compiling and linking.</p>
+						<p class="sub-note">* sdpi demo *</p>
+					</div>
+
 				<div class="step" data-y="1000" data-scale=".5">
-					<h1>$scope.$watch</h1>
+					<h2>$scope.$watch</h2>
 					<p>how you can be informed of a change on the $scope</p>
 				</div>
 				
 					<div class="step" data-y="1000" data-rotate-y="90" data-rotate-x="-90" data-z="-500" data-x="250" data-scale=".5">
 						<p>Watches allow you to establish listeners for model updates</p>
-						<pre>
+						<pre class="example">
 $scope.myData = 'fooBar';
 $scope.$watch('myData', function(newValue, oldValue){ 
-	// I get invoked when $scope.myData is modified
 	expect(newValue).toEqual('fooBar');
 	expect(newValue).toEqual($scope.myData);
 });
-						</pre>						
+						</pre>
 					</div>
 
 					<div class="step" data-y="1000" data-rotate-y="90" data-rotate-x="-90" data-z="-1000" data-x="250" data-scale=".5">
 						<p>Watches actually evaluate expressions w/ $scope as context</p>
-						<pre>
+						<pre class="example">
 $scope.myData = 100;
 $scope.someFunction = function(d){ return d-1};
 $scope.$watch('myData + 1 + someFunction(myData)', function(newValue, oldValue){ 
-	// I get invoked when the result of my expression has changed
 	expect(newValue).toEqual(200);
-	expect(newValue).toEqual($scope.eval('myData + 1 + someFunction(myData)'));
+	expect(newValue).toEqual(
+		$scope.eval('myData + 1 + someFunction(myData)')
+	);
 });
 						</pre>
-						<p></p>
+					</div>
+					
+					<div class="step" data-y="1000" data-rotate-y="90" data-rotate-x="-90" data-z="-1500" data-x="250" data-scale=".5">
+						<p>Angular templating watches all expressions to update the DOM</p>
+						<pre class="example">
+<div>myData: {{myData}}</div> <!-- TODO escape this-->
+						</pre>
 					</div>
 			
 				<div class="step" data-y="1500" data-scale=".5">
