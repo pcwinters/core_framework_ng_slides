@@ -2,5 +2,8 @@
   "name": "core_framework_ng_slides",
   "dependencies": {
     "impress.js": "~0.5.3"
+  },
+  "devDependencies": {
+    "bootstrap": "~3.2.0"
   }
 }

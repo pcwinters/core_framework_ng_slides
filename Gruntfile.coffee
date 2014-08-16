@@ -31,6 +31,7 @@ module.exports = (grunt) ->
 			assets:
 				src: [
 					'bower_components/impress.js/js/impress.js'
+					'bower_components/bootstrap/dist/css/bootstrap.css'
 				]
 				flatten: true
 				dest: 'dist/assets/'
