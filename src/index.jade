@@ -1,0 +1,15 @@
+html
+	head
+		title
+		meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+		link(href='index.css', rel='stylesheet')
+	body
+		#impress
+			.no-support-message
+				| Sorry! Your browser is unable to load the Impress slideshow. Try reloading the page in Google Chrome or Safari.
+			
+			include src/basics/index
+		
+		script(type='text/javascript', src='assets/impress.js')
+		script(type='text/javascript').
+			impress().init();</script>

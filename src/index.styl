@@ -1,0 +1,35 @@
+.no-support-message
+	display:none
+	
+	.impress-not-supported & 
+		display:block
+
+body
+	background: #EBEBEB
+	font: 48px "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif
+	color:#333
+
+.step
+	width: 900px
+	padding: 40px
+	box-sizing: border-box
+	font-size: 48px
+	line-height: 1.5
+	transition: opacity 1s
+	
+	&:not(.active) 
+		opacity: 0.2
+
+pre.example
+	font-size: inherit
+	display: block
+	font-size: 20px
+
+code
+	font-size: 0.8em
+
+.sub-note
+	font-size: 15px
+
+	&::before
+		content:"* "
