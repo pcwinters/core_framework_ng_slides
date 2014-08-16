@@ -1,6 +1,12 @@
 #scope.step(data-y='500', data-scale='.5')
 	h2 $scope
-	p the big angular data model
+	p the big angular application data model
+#scope-def.step(data-y='500', data-scale='.5', data-rotate-y='90')
+	h2 What are Scopes?
+	.small scope is an object that refers to the application model. It is an execution context for expressions. Scopes are arranged in hierarchical structure which mimic the DOM structure of the application. Scopes can watch expressions and propagate events.
+	.sub-note 
+		| From 
+		a(href="https://docs.angularjs.org/guide/scope") AngularJS Guide
 
 #rootScope.step(data-y='500', data-rotate-y='90', data-rotate-x='-90', data-z='-500', data-x='250', data-scale='.5')
 	include $rootScope
@@ -12,16 +18,8 @@
 	include siblings
 
 #scope-and-dom.step(data-y='500', data-rotate-y='90', data-rotate-x='-90', data-z='-2000', data-x='250', data-scale='.5')
-	h3 Scopes and the DOM
-	p Every DOM element is linked to a scope
-	div
-		pre.example.left.
-			$scope.items = [
-				{name: 'Item1'},
-				{name: 'Item2'}
-			]            
-		pre.example.right.
-			\nli(ng-repeat="item in items")
-			\tspan {{item.name}}            
-	p.sub-note You'll hear the terms compiling and linking.
-	p.sub-note * sdpi demo *
+	include dom
+
+#scope-and-dom-ng-controller.step(data-y='500', data-rotate-y='180', data-rotate-x='-90', data-z='-2000', data-x='250', data-scale='.5')
+	include dom-ng-controller
+

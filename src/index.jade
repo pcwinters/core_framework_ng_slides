@@ -2,6 +2,7 @@ html
 	head
 		title
 		meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+		link(href='assets/impressConsole.css', rel='stylesheet')
 		link(href='assets/bootstrap.css', rel='stylesheet')
 		link(href='index.css', rel='stylesheet')
 	body
@@ -10,7 +11,12 @@ html
 				| Sorry! Your browser is unable to load the Impress slideshow. Try reloading the page in Google Chrome or Safari.
 			
 			include src/basics/index
+			include src/performance/index
 		
 		script(type='text/javascript', src='assets/impress.js')
+		script(type='text/javascript', src='assets/impressConsole.js')
 		script(type='text/javascript').
-			impress().init();</script>
+			impress().init();
+			impressConsole().init('assets/impressConsole.css');
+			//- impressConsole().registerKeyEvent([78], showSlideNumbers, window);
+			</script>

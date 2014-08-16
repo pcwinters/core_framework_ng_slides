@@ -1,0 +1,17 @@
+h2
+	| $scope and the DOM
+	small ng-controller
+
+div In a simple app, $new is called by the ng-controller
+pre.example
+	div= '<body ng-app="MyApp">'
+	div= '  <div id="content" ng-controller="MyController"/>'
+	div= '</div>'
+pre.example.
+	var bodyScope = $('body').scope()
+	var contentScope = $('#content').scope()
+	expect(contentScope).not.toEqual(bodyScope)
+	expect(contentScope.$parent).toEqual(bodyScope)
+
+.sub-note You'll hear the terms compiling and linking.
+.sub-note * sdpi demo *

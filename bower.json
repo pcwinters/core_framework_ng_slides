@@ -1,9 +1,11 @@
 {
   "name": "core_framework_ng_slides",
   "dependencies": {
-    "impress.js": "~0.5.3"
+    "impress.js": "~0.5.3",
+    "impressConsole.js": "regebro/impress-console#64b3c75947ba8cddcbfbcd0d439973d6d3e9b542",
+    "bootstrap": "~3.2.0"
   },
   "devDependencies": {
-    "bootstrap": "~3.2.0"
+    
   }
 }

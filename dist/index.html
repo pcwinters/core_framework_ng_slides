@@ -1,14 +1,15 @@
-<html><head><title></title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/><link href="assets/bootstrap.css" rel="stylesheet"/><link href="index.css" rel="stylesheet"/></head><body><div id="impress"><div class="no-support-message">Sorry! Your browser is unable to load the Impress slideshow. Try reloading the page in Google Chrome or Safari.</div><div id="basics" data-scale="1" class="step"><h1>AngularJS Basics</h1></div><div id="scope" data-y="500" data-scale=".5" class="step"><h2>$scope</h2><p>the big angular data model</p></div><div id="rootScope" data-y="500" data-rotate-y="90" data-rotate-x="-90" data-z="-500" data-x="250" data-scale=".5" class="step"><div> 
-An application is bootstrapped with a <code>$rootScope</code>.</div><pre class="example">angular.module('myApp', []).run(function($rootScope){
+<html><head><title></title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/><link href="assets/impressConsole.css" rel="stylesheet"/><link href="assets/bootstrap.css" rel="stylesheet"/><link href="index.css" rel="stylesheet"/></head><body><div id="impress"><div class="no-support-message">Sorry! Your browser is unable to load the Impress slideshow. Try reloading the page in Google Chrome or Safari.</div><div id="basics" data-scale="1" class="step"><h1>AngularJS Basics</h1></div><div id="scope" data-y="500" data-scale=".5" class="step"><h2>$scope</h2><p>the big angular application data model</p></div><div id="scope-def" data-y="500" data-scale=".5" data-rotate-y="90" class="step"><h2>What are Scopes?</h2><div class="small">scope is an object that refers to the application model. It is an execution context for expressions. Scopes are arranged in hierarchical structure which mimic the DOM structure of the application. Scopes can watch expressions and propagate events.</div><div class="sub-note"> 
+From <a href="https://docs.angularjs.org/guide/scope">AngularJS Guide</a></div></div><div id="rootScope" data-y="500" data-rotate-y="90" data-rotate-x="-90" data-z="-500" data-x="250" data-scale=".5" class="step"><h2>$rootScope</h2><div> 
+An application is bootstrapped with a <code>$rootScope</code></div><pre class="example">angular.module('myApp', []).run(function($rootScope){
 	$rootScope.appName = 'myApp';
 });
-</pre></div><div id="scope-new" data-y="500" data-rotate-y="90" data-rotate-x="-90" data-z="-1000" data-x="250" data-scale=".5" class="step"><div>Scopes are forked to create children</div><pre class="example">angular.module('myApp', []).run(function($rootScope){
+</pre></div><div id="scope-new" data-y="500" data-rotate-y="90" data-rotate-x="-90" data-z="-1000" data-x="250" data-scale=".5" class="step"><h2>$scope.$new</h2><div>Scopes are forked to create children</div><pre class="example">angular.module('myApp', []).run(function($rootScope){
 	$rootScope.appName = 'myApp';
 	$childScope = $rootScope.$new();
 	expect($childScope.appName).toEqual('myApp');
 	expect($childScope).not.toEqual($rootScope);
 });
-</pre><div class="sub-note">Manually forking $new scopes is exceedingly rare. This is generally managed by directives.</div><div class="sub-note">Scopes prototypically inherit from parents; more in common gotchas</div></div><div id="scope-siblings" data-y="500" data-rotate-y="90" data-rotate-x="-90" data-z="-1500" data-x="250" data-scale=".5" class="step"><div>Sibling scopes</div><pre class="example">angular.module('myApp', []).run(function($rootScope){
+</pre><div class="sub-note">Manually forking $new scopes is exceedingly rare. This is generally managed by directives.</div><div class="sub-note">Scopes prototypically inherit from parents; more in common gotchas</div></div><div id="scope-siblings" data-y="500" data-rotate-y="90" data-rotate-x="-90" data-z="-1500" data-x="250" data-scale=".5" class="step"><h2>$scope.$$nextSibling</h2><div>Sibling scopes</div><pre class="example">angular.module('myApp', []).run(function($rootScope){
 	$rootScope.appName = 'myApp';
 	$childScopes = [$rootScope.$new(), $rootScope.$new()]
 	_.each($childScopes, function($scope, i){
@@ -21,40 +22,54 @@ An application is bootstrapped with a <code>$rootScope</code>.</div><pre class="
 	});
 	expect(_.pluck($childScopes, '$index')).toEqual([0,1])
 });
-</pre></div><div id="scope-and-dom" data-y="500" data-rotate-y="90" data-rotate-x="-90" data-z="-2000" data-x="250" data-scale=".5" class="step"><h3>Scopes and the DOM</h3><p>Every DOM element is linked to a scope</p><div><pre class="example left">$scope.items = [
+</pre></div><div id="scope-and-dom" data-y="500" data-rotate-y="90" data-rotate-x="-90" data-z="-2000" data-x="250" data-scale=".5" class="step"><h2>$scope and the DOM</h2><div>Every DOM element is linked to a scope</div><div class="container-fluid"><div class="row"><div class="col-md-6"><pre class="example">$scope.items = [
 	{name: 'Item1'},
 	{name: 'Item2'}
-]            </pre><pre class="example right">\nli(ng-repeat="item in items")
-\tspan {{item.name}}            </pre></div><p class="sub-note">You'll hear the terms compiling and linking.</p><p class="sub-note">* sdpi demo *</p></div><div data-y="1000" data-scale=".5" class="step"><h2>$scope.$watch</h2><p>how you can be informed of a change on the $scope</p></div><div data-y="1000" data-rotate-y="90" data-rotate-x="-90" data-z="-500" data-x="250" data-scale=".5" class="step"><p>Watches allow you to establish listeners for model updates</p><pre class="example">\n$scope.myData = 'fooBar';
+]</pre></div><div class="col-md-6"><pre class="example"><div>&lt;ul&gt;</div><div> &lt;li</div><div>   ng-repeat=&quot;item in items&quot;&gt;</div><div>     {{item.name}}</div><div> &lt;/li&gt;</div><div>&lt;/ul&gt;</div></pre></div></div></div><div class="sub-note">You'll hear the terms compiling and linking.</div><div class="sub-note">* sdpi demo *</div></div><div id="scope-and-dom-ng-controller" data-y="500" data-rotate-y="180" data-rotate-x="-90" data-z="-2000" data-x="250" data-scale=".5" class="step"><h2>$scope and the DOM<small>ng-controller</small></h2><div>In a simple app, $new is called by the ng-controller</div><pre class="example"><div>&lt;body ng-app=&quot;MyApp&quot;&gt;</div><div>  &lt;div id=&quot;content&quot; ng-controller=&quot;MyController&quot;/&gt;</div><div>&lt;/div&gt;</div></pre><pre class="example">var bodyScope = $('body').scope()
+var contentScope = $('#content').scope()
+expect(contentScope).not.toEqual(bodyScope)
+expect(contentScope.$parent).toEqual(bodyScope)
+</pre><div class="sub-note">You'll hear the terms compiling and linking.</div><div class="sub-note">* sdpi demo *</div></div><div data-y="1000" data-scale=".5" class="step"><h2>$scope.$watch</h2><p>how you can be informed of a change on the $scope</p></div><div data-y="1000" data-rotate-y="90" data-rotate-x="-90" data-z="-500" data-x="250" data-scale=".5" class="step"><h2> 
+$scope.$watch<small>model variables</small></h2><p> 
+Watches allow you to establish listeners for model <small>($scope)</small> updates</p><pre class="example">$scope.myData = 'fooBar';
 $scope.$watch('myData', function(newValue, oldValue){ 
-\texpect(newValue).toEqual('fooBar');
-\texpect(newValue).toEqual($scope.myData);
+	expect(newValue).toEqual('fooBar');
+	expect(newValue).toEqual($scope.myData);
 });
-\t\t\t\t\t\t          </pre></div><div data-y="1000" data-rotate-y="90" data-rotate-x="-90" data-z="-1000" data-x="250" data-scale=".5" class="step"><p>Watches actually evaluate expressions w/ $scope as context</p><pre class="example">\n$scope.myData = 100;
+</pre></div><div data-y="1000" data-rotate-y="90" data-rotate-x="-90" data-z="-1000" data-x="250" data-scale=".5" class="step"><h2> 
+$scope.$watch<small>expressions</small></h2><p>Watches actually evaluate expressions w/ $scope as context</p><pre class="example">$scope.myData = 100;
 $scope.someFunction = function(d){ return d-1};
 $scope.$watch('myData + 1 + someFunction(myData)', function(newValue, oldValue){ 
-\texpect(newValue).toEqual(200);
-\texpect(newValue).toEqual(
-\t\t$scope.eval('myData + 1 + someFunction(myData)')
-\t);
+	expect(newValue).toEqual(200);
+	expect(newValue).toEqual(
+		$scope.$eval('myData + 1 + someFunction(myData)')
+	);
 });
-\t\t\t\t\t\t          </pre></div><div data-y="1000" data-rotate-y="90" data-rotate-x="-90" data-z="-1500" data-x="250" data-scale=".5" class="step"><p>Angular templating watches all expressions to update the DOM</p><pre class="example">\n                     
-\t\t\t\t\t\t          </pre></div><div data-y="1500" data-scale=".5" class="step"><h1>$scope.$digest</h1><p>how angular knows something has changed</p></div><div data-y="1500" data-rotate-y="90" data-rotate-x="-90" data-z="-500" data-x="250" data-scale=".5" class="step"><p>The angular $digest is based on dirty checking all 'watched' expressions</p></div><div data-y="1500" data-rotate-y="90" data-rotate-x="-90" data-z="-1000" data-x="250" data-scale=".5" class="step"><p>Something<p>Something</p></p></div><!-- 
-			<div class="step" data-x="1000">
-				and to the right.
-			</div>
-			<div class="step" data-y="-800">
-				Sliding up…
-			</div>
-			<div class="step" data-y="975">
-				and  back down.
-			</div>
-			<div class="step" data-y="1500" data-scale="10">
-				<b>AMPLIFYING</b> your <b>BIG</b> ideas
-			</div>
-			<div class="step" data-y="2000" data-rotate-y="90">
-				... and adjusting perspective to illuminate new ones.
-			</div>
-			<div class="step" data-rotate-z="180" data-y="-1800" data-scale=".25">
-				Thanks for joining me in exploring the functions of Impress.js. Happy coding!
-			</div> --></div><script type="text/javascript" src="assets/impress.js"></script><script type="text/javascript">impress().init();</script></script></body></html>
+</pre></div><div data-y="1000" data-rotate-y="90" data-rotate-x="-90" data-z="-1500" data-x="250" data-scale=".5" class="step"><h2> 
+$scope.$watch<small>templates, $compile</small></h2><p>Angular compiles templates and places watches on all expressions in order to update the DOM</p><pre class="example">$scope = jasmine.createSpyObj('$scope', ['$watch'])
+linkFn = $compile("&lt;div&gt;{{appName}}&lt;/div&gt;")
+linkFn($scope)
+expect($scope.$watch).toHaveBeenCalledWith('appName')</pre></div><div data-y="1500" data-scale=".5" class="step"><h2>$scope.$digest</h2><p>how angular knows something has changed</p></div><div data-y="1500" data-rotate-y="90" data-rotate-x="-90" data-z="-500" data-x="250" data-scale=".5" class="step"><h2> 
+$scope.$digest<small> <a href="https://github.com/angular/angular.js/blob/a19131494c7661d8dee04aa9a422c1f171f249e0/src/ng/rootScope.js#L675">angularjs source</a></small></h2><h4>The angular $digest is based on dirty checking all 'watched' expressions</h4><pre class="example">$digest: function() {
+  do { // "while dirty" loop
+    dirty = false;
+    do { // "traverse the scopes" heirarchy
+      if ((watchers = current.$$watchers)) {
+        // process our watches
+        length = watchers.length;
+        while (length--) {
+          watch = watchers[length];
+          /**
+            Evaluate the watch to see if it has changed
+            ...
+           **/
+        }
+      }
+    } while ((current = next));
+  } while (dirty);
+}
+</pre></div><div id="digest-hugo" data-y="1500" data-rotate-y="90" data-rotate-x="-90" data-z="-1000" data-x="250" data-scale=".5" class="step"><h2>$scope.$digest<small>hugo, rally-beacon	</small></h2><div class="container-fluid"><div class="row"><div class="col-md-6"><img src="assets/hugo_digest.png" class="hugo"/></div><div class="col-md-6"><h3>Who calls $digest?</h3><ul class="root"><li>$http - ajax service</li><li>$timeout - async events</li><li> <span>DOM directives:				</span><ul><li> 
+ng-click and<br/>ng-:event</li><li>ng-repeat</li><li>ng-if, ng-show</li></ul></li><li>many others</li></ul></div></div></div></div><div id="performance" data-scale="1" data-x="1000" class="step"><h1>AngularJS Performance</h1></div></div><script type="text/javascript" src="assets/impress.js"></script><script type="text/javascript" src="assets/impressConsole.js"></script><script type="text/javascript">impress().init();
+impressConsole().init('assets/impressConsole.css');
+//- impressConsole().registerKeyEvent([78], showSlideNumbers, window);
+</script></script></body></html>

@@ -1,0 +1,36 @@
+.step(data-y='1500', data-scale='.5')
+	h2 $scope.$digest
+	p how angular knows something has changed
+.step(data-y='1500', data-rotate-y='90', data-rotate-x='-90', data-z='-500', data-x='250', data-scale='.5')
+	h2 
+		| $scope.$digest
+		small 
+			a(href="https://github.com/angular/angular.js/blob/a19131494c7661d8dee04aa9a422c1f171f249e0/src/ng/rootScope.js#L675") angularjs source
+	h4 The angular $digest is based on dirty checking all 'watched' expressions
+	pre.example
+		include digestSrc.js
+
+#digest-hugo.step(data-y='1500', data-rotate-y='90', data-rotate-x='-90', data-z='-1000', data-x='250', data-scale='.5')
+	h2
+		| $scope.$digest
+		small hugo, rally-beacon	
+	.container-fluid
+		.row
+			.col-md-6
+				img.hugo(src="assets/hugo_digest.png")
+			.col-md-6
+				h3 Who calls $digest?
+				ul.root
+					li $http - ajax service
+					li $timeout - async events
+					li 
+						span DOM directives:				
+						ul
+							li 
+								| ng-click and
+								br
+								| ng-:event
+							li ng-repeat
+							li ng-if, ng-show
+					li many others
+

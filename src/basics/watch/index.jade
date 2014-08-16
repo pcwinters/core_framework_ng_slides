@@ -1,0 +1,46 @@
+.step(data-y='1000', data-scale='.5')
+	h2 $scope.$watch
+	p how you can be informed of a change on the $scope
+
+.step(data-y='1000', data-rotate-y='90', data-rotate-x='-90', data-z='-500', data-x='250', data-scale='.5')
+	h2 
+		| $scope.$watch
+		small model variables
+	p 
+		| Watches allow you to establish listeners for model 
+		small ($scope)
+		|  updates
+	pre.example.
+		$scope.myData = 'fooBar';
+		$scope.$watch('myData', function(newValue, oldValue){ 
+			expect(newValue).toEqual('fooBar');
+			expect(newValue).toEqual($scope.myData);
+		});
+
+.step(data-y='1000', data-rotate-y='90', data-rotate-x='-90', data-z='-1000', data-x='250', data-scale='.5')
+	h2 
+		| $scope.$watch
+		small expressions
+	p Watches actually evaluate expressions w/ $scope as context
+	pre.example.
+		$scope.myData = 100;
+		$scope.someFunction = function(d){ return d-1};
+		$scope.$watch('myData + 1 + someFunction(myData)', function(newValue, oldValue){ 
+			expect(newValue).toEqual(200);
+			expect(newValue).toEqual(
+				$scope.$eval('myData + 1 + someFunction(myData)')
+			);
+		});
+
+.step(data-y='1000', data-rotate-y='90', data-rotate-x='-90', data-z='-1500', data-x='250', data-scale='.5')
+	h2 
+		| $scope.$watch
+		small templates, $compile
+	p Angular compiles templates and places watches on all expressions in order to update the DOM
+	pre.example.
+		$scope = jasmine.createSpyObj('$scope', ['$watch'])
+		linkFn = $compile("&lt;div&gt;{{appName}}&lt;/div&gt;")
+		linkFn($scope)
+		expect($scope.$watch).toHaveBeenCalledWith('appName')
+		
+

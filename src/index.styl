@@ -10,6 +10,30 @@ body
 	color:#333
 	font-size: 5em
 
+	.small
+		font-size: .6em
+
+	.sub-note
+		font-size: 0.3em
+
+		&::before
+			content:"* "
+
+	pre.example
+		font-size: inherit
+		display: block
+		font-size: .4em
+
+	code
+		font-size: 0.8em
+
+	small
+		color: #777
+
+h1, h2, h3, h4, h5
+	small
+		margin-left: 20px
+
 .step
 	width: 900px
 	padding: 40px
@@ -17,21 +41,10 @@ body
 	font-size: inherit
 	// 48px
 	line-height: 1.5
-	transition: opacity 1s
+	transition: all .5s
+	transition-property: opacity, color
 	
 	&:not(.active) 
-		opacity: 0.2
+		opacity: 0.1
+		color: #999 !important
 
-pre.example
-	font-size: inherit
-	display: block
-	font-size: 20px
-
-code
-	font-size: 0.8em
-
-.sub-note
-	font-size: 0.3em
-
-	&::before
-		content:"* "

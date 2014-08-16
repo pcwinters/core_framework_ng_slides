@@ -1,0 +1,20 @@
+h2 $scope and the DOM
+div Every DOM element is linked to a scope
+.container-fluid
+	.row
+		.col-md-6
+			pre.example.
+				$scope.items = [
+					{name: 'Item1'},
+					{name: 'Item2'}
+				]
+		.col-md-6
+			pre.example
+				div= '<ul>'
+				div= ' <li'
+				div= '   ng-repeat="item in items">'
+				div= '     {{item.name}}'
+				div= ' </li>'
+				div= '</ul>'
+.sub-note You'll hear the terms compiling and linking.
+.sub-note * sdpi demo *

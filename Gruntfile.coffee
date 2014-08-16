@@ -20,6 +20,8 @@ module.exports = (grunt) ->
 				dest: 'dist/'
 		stylus:
 			slides:
+				options:
+					compress: false
 				files:
 					'dist/index.css': ['src/**/*.styl']
 		watch:
@@ -31,7 +33,10 @@ module.exports = (grunt) ->
 			assets:
 				src: [
 					'bower_components/impress.js/js/impress.js'
+					'bower_components/impressConsole.js/js/impressConsole.js'
+					'bower_components/impressConsole.js/css/impressConsole.css'
 					'bower_components/bootstrap/dist/css/bootstrap.css'
+					'src/assets/*'
 				]
 				flatten: true
 				dest: 'dist/assets/'
