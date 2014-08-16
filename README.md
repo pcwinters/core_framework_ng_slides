@@ -39,7 +39,7 @@ Slides
 
 * Performance
   * $watch and $digest
-    * $digest - evaluates watched expression for self and all child scopes
+    * $digest vs $apply - evaluates watched expression for self and all child scopes
     * $apply - invokes a $digest at $rootScope
       * ng services and directives - almost always use $apply, click example  
     * bindonce - live jsfiddle example

@@ -6,8 +6,9 @@ angular.module('myApp', []).run(function($rootScope){
 	});
 
 	expect($rootScope.$index).toBeUndefined();
+	expect(_.pluck($childScopes, '$index')).toEqual([0,1])
 	_.each($childScopes, function($scope){
 		expect($scope.appName).toEqual('myApp');
 	});
-	expect(_.pluck($childScopes, '$index')).toEqual([0,1])
+	
 });

@@ -17,10 +17,11 @@ An application is bootstrapped with a <code>$rootScope</code></div><pre class="e
 	});
 
 	expect($rootScope.$index).toBeUndefined();
+	expect(_.pluck($childScopes, '$index')).toEqual([0,1])
 	_.each($childScopes, function($scope){
 		expect($scope.appName).toEqual('myApp');
 	});
-	expect(_.pluck($childScopes, '$index')).toEqual([0,1])
+	
 });
 </pre></div><div id="scope-and-dom" data-y="500" data-rotate-y="90" data-rotate-x="-90" data-z="-2000" data-x="250" data-scale=".5" class="step"><h2>$scope and the DOM</h2><div>Every DOM element is linked to a scope</div><div class="container-fluid"><div class="row"><div class="col-md-6"><pre class="example">$scope.items = [
 	{name: 'Item1'},
@@ -68,7 +69,7 @@ $scope.$digest<small> <a href="https://github.com/angular/angular.js/blob/a19131
     } while ((current = next));
   } while (dirty);
 }
-</pre></div><div id="digest-hugo" data-y="1500" data-rotate-y="90" data-rotate-x="-90" data-z="-1000" data-x="250" data-scale=".5" class="step"><h2>$scope.$digest<small>hugo, rally-beacon	</small></h2><div class="container-fluid"><div class="row"><div class="col-md-6"><img src="assets/hugo_digest.png" class="hugo"/></div><div class="col-md-6"><h3>Who calls $digest?</h3><ul class="root"><li>$http - ajax service</li><li>$timeout - async events</li><li> <span>DOM directives:				</span><ul><li> 
+</pre></div><div id="digest-hugo" data-y="1500" data-rotate-y="90" data-rotate-x="-90" data-z="-1000" data-x="250" data-scale=".5" class="step"><h2>$scope.$digest<small>hugo, rally-beacon	</small></h2><div class="container-fluid"><div class="row"><div class="col-md-6"><img src="assets/hugo_digest.png" class="hugo"/></div><div class="col-md-6"><h3>Who calls $digest?</h3><ul class="root"><li>$q - promises</li><li>$http - ajax service</li><li>$timeout - async events</li><li> <span>DOM directives:				</span><ul><li> 
 ng-click and<br/>ng-:event</li><li>ng-repeat</li><li>ng-if, ng-show</li></ul></li><li>many others</li></ul></div></div></div></div><div id="performance" data-scale="1" data-x="1000" class="step"><h1>AngularJS Performance</h1></div></div><script type="text/javascript" src="assets/impress.js"></script><script type="text/javascript" src="assets/impressConsole.js"></script><script type="text/javascript">impress().init();
 impressConsole().init('assets/impressConsole.css');
 //- impressConsole().registerKeyEvent([78], showSlideNumbers, window);
