@@ -51,6 +51,7 @@ Slides
 * dependencies
   * node/bower app
   * ng module system
+    * configuration phase vs runtime
 
 * Pitfalls
   * $scope prototypical inheritance

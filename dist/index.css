@@ -54,6 +54,8 @@ h5 small {
   transition-property: opacity, color;
 }
 .step:not(.active) {
-  opacity: 0.1;
-  color: #999 !important;
+  opacity: 0;
+}
+body.impress-on-end .step:not(.active) {
+  opacity: 0.7;
 }
