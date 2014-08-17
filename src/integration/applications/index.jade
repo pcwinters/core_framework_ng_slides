@@ -1,0 +1,55 @@
+#application-dependencies.step(data-y='500', data-x='2350', data-scale='.5')
+	h2 applications
+	p Angular applications and characteristics
+
+#application-nodejs.step(data-y='500', data-x='2350', data-rotate-y='90', data-rotate-x='-90', data-z='-500', data-scale='.5')
+	h2 
+		| applications
+		small nodejs
+	p.small It's popular for AngularJS client applications to be built and paired with nodejs. For this reason, you can expect that many will be built with the same tools.
+	pre.example.
+		angulartics [master] $ npm install
+		angulartics [master] $ ./node_modules/.bin/bower install
+		angulartics [master] $ ./node_modules/.bin/grunt
+		Running "jshint:all" (jshint) task
+		&gt;&gt; 16 files lint free.
+
+		Running "karma:unit" (karma) task
+		PhantomJS 1.9.7 (Mac OS X): Executed 23 of 23 SUCCESS (0.049 secs / 0.04 secs)
+
+		Running "concat:dist" (concat) task
+		File dist/angulartics-scroll.min.js created.
+
+		Running "uglify:dist" (uglify) task
+		File dist/angulartics.min.js created: 8.98 kB → 3.83 kB
+		
+		angulartics [master] $ grep "version" bower.json
+		  "version": "0.16.1",		
+
+#application-bower.step(data-y='500', data-x='2350', data-rotate-y='90', data-rotate-x='-90', data-z='-1000', data-scale='.5')
+	h2 
+		| applications
+		small bower
+	p.small Bower resolves and pulls client-side dependencies
+	pre.example.
+		{
+		  "name": "SDPI-data-server",
+		  "version": "0.1.3",
+		  "main": [ 
+		  	"dist/static/sdpi/app.js",
+		  	"dist/static/sdpi/app.css"
+		  ]
+		  "dependencies": {
+		    "angular": "1.2.3",
+		    "angular-bootstrap": "0.10.0",
+		    "jquery": "1.9.1",
+		    "lodash": "2.4.1",
+		    "rui-angular": "RallySoftware/bower-rui-angular#0.2.1",
+		    "angulartics": "RallySoftware/angulartics#0.16.1",
+		    "rally-style": "RallySoftware/rally-style.git#v0.2.15",
+		    "rallymetrics": "RallySoftware/clientmetrics.git#0.4.1"
+		  }
+		}
+
+	.sub-note
+		a(href="http://bower.io/") http://bower.io/

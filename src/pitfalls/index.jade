@@ -1,0 +1,63 @@
+#pitfalls.step(data-scale='1', data-x='3500')
+	h1 Common AngularJS Pitfalls
+
+#pitfalls-scope-prototype.step(data-y='500', data-x='3500', data-scale='.5')
+	h2 
+		| pitfalls
+		small prototype
+	p.small Child scopes prototypically inherit from their parents
+	pre.example.
+		$child = $scope.$new();
+		expect(Object.getPrototypeOf($child)).toEqual($scope);
+
+#pitfalls-scope-prototype-nested.step(data-y='500', data-x='3500', data-rotate-y='90', data-rotate-x='-90', data-z='-500', data-scale='.5')
+	h2 
+		| pitfalls
+		small prototype and child scopes
+	pre.example
+		div= '<div ng-controller="RootCtrl">'
+		div= '  <div>{{name}}</div>'
+		div= '  <div ng-controller="ChildCtrl">'
+		div= '    <span>{{name}}</span>'	
+		div= '  </div>'
+		div= '</div>'
+	pre.example.
+		module.controller('RootCtrl', function($scope){
+			$scope.name = 'foo';
+		})
+		module.controller('ChildCtrl', function($scope){
+			$scope.name = 'bar'
+		});
+	pre.example
+		div= '<div>'
+		div= '  <div>foo</div>'
+		div= '  <div>'
+		div= '    <span>bar</span>'	
+		div= '  </div>'
+		div= '</div>'
+
+//- #performace-expressions.step(data-y='500', data-x='3500', data-rotate-y='90', data-rotate-x='-90', data-z='-500', data-scale='.5')
+//- 	h2 
+//- 		| performance
+//- 		small expressions
+//- 	p Remember that expressions can be evaluated many times per $digest.
+//- 	pre.example
+//- 		div= '<input type="text"'
+//- 		div= '  ng-model="myInput"'
+//- 		div= '  ng-class="{ valid: /^shouldMatch$/.test(myInput) }"'
+//- 		div= '/>'
+
+//- #performace-ng-repeat.step(data-y='500', data-x='3500', data-rotate-y='90', data-rotate-x='-90', data-z='-1000', data-scale='.5')
+//- 	h2 
+//- 		| performance
+//- 		small ng-repeat
+//- 	p
+//- 		code ng-repeat
+//- 		|  acts as a force multiplier.
+//- 	pre.example
+//- 		div= '<tr ng-repeat="x in _.range(1e6)">'
+//- 		div= '  <td>{{ Math.log(x) }}</td>'
+//- 		div= '</tr>'
+
+//- #performance-bindonce.step(data-y='500', data-x='3500', data-rotate-y='90', data-rotate-x='-90', data-z='-1500', data-scale='.5')
+//- 	include bindonce

@@ -31,6 +31,9 @@ body pre.example {
   display: block;
   font-size: 0.4em;
 }
+body pre.example.small {
+  font-size: 0.3em;
+}
 body code {
   font-size: 0.8em;
 }

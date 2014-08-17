@@ -1,0 +1,65 @@
+#ng-modules.step(data-y='1000', data-x='2350', data-scale='.5')
+	h2 ng modules
+	p.small Declarative module definitions that can be loaded in any order
+	p.small Applications don't have a main, and module execution is delayed
+
+#application-namespaces.step(data-y='500', data-x='2350', data-rotate-y='90', data-rotate-x='-90', data-z='-500', data-scale='.5')
+	h2 
+		| ng modules
+		small module definition
+	p.small Larger apps need to define modules like namespaces with imports
+	
+	h5 src/sdpi/app/index.js
+	pre.example.small.
+		angular.module('sdpi.app', ['sdpi.app.config', 'sdpi.app.perform'])
+	
+	h5 src/sdpi/app/perform/index.js
+	pre.example.small.
+		angular.module('sdpi.app.perform', ['sdpi.app.perform.controllers', 'sdpi.app.perform.services'])
+	
+	h5 src/sdpi/app/perform/controllers/router.js
+	pre.example.small.
+		angular.module('sdpi.app.perform.controllers.router', 
+			['rui.alm.services.wsapi']).controller('SdpiAppPerformRouterCtrl',
+			function($scope, $wsapi){
+			});
+	h5 src/sdpi/app/index.html
+	pre.example.small
+		div= '<body ng-app="sdpi.app"'
+
+#application-configuration-phase.step(data-y='500', data-x='2350', data-rotate-y='90', data-rotate-x='-90', data-z='-1000', data-scale='.5')
+	h2 
+		| ng modules
+		small configuration phase
+	p.small Delayed execution provides a configuration phase before singletons (services, factories, etc.) are instantiated.	
+	pre.example.small.
+		angular.module('alm.pages.details.defect', [ 'rally.services.rally' ])
+			.run(function($rally, $rootScope){
+				var updateProject = function(){
+					$rootScope.selectedProject = $rally.app.selectedProject;	
+				}
+				$rally.$on('project', updateProject);
+				updateProject();
+			});
+	h5 Runtime Script
+	pre.example.small.
+		var theNgAppToLoad ='alm.pages.details.defects';		
+		var toBootstrap = ''+Math.random();
+		var appContext = Rally.app.App;
+		angular.module(toBootstrap, [theNgAppToLoad]).config(function($rallyProvider){
+			$rallyProvider.setAppContext(appContext);
+			$rallyProvider.pipe(coreEventBus);
+		});
+		angular.bootstrap(toBootstrap, $('#pageContent'));
+
+	.sub-note 
+		| For some ideas 
+		a(href="https://github.com/pcw216/angular-appsdk") https://github.com/pcw216/angular-appsdk
+
+#application-bootstrapping-overmind.step(data-y='500', data-x='2350', data-rotate-y='90', data-rotate-x='-90', data-z='-1500', data-scale='.5')
+	h2 
+		| ng modules
+		small overmind
+	p.small Easy module isolation and lazy loading for Angular apps.
+	.sub-note 		
+		a(href="https://github.com/geddski/overmind") https://github.com/geddski/overmind

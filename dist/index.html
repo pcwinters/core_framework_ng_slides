@@ -71,9 +71,79 @@ $scope.$digest<small> <a href="https://github.com/angular/angular.js/blob/a19131
 }
 </pre></div><div id="digest-hugo" data-y="1500" data-rotate-y="90" data-rotate-x="-90" data-z="-1000" data-x="250" data-scale=".5" class="step"><h2>$scope.$digest<small>hugo, rally-beacon	</small></h2><div class="container-fluid"><div class="row"><div class="col-md-6"><img src="assets/hugo_digest.png" class="hugo"/></div><div class="col-md-6"><h3>Who calls $digest?</h3><ul class="root"><li>$q - promises</li><li>$http - ajax service</li><li>$timeout - async events</li><li> <span>DOM directives:				</span><ul><li> 
 ng-click and<br/>ng-:event</li><li>ng-repeat</li><li>ng-if, ng-show</li></ul></li><li>many others</li></ul></div></div></div></div><div id="performance" data-scale="1" data-x="1100" class="step"><h1>AngularJS Performance</h1></div><div id="performace-watch" data-y="500" data-x="1250" data-scale=".5" class="step"><h2> 
-performance<small>$watch and $digest</small></h2><p>The number and type of watches occuring within digests will almost certainly be responsible for application performance problems</p></div><div id="performace-expressions" data-y="500" data-x="1250" data-rotate-y="90" data-rotate-x="-90" data-z="-500" data-scale=".5" class="step"><h2> 
+performance<small>$watch and $digest</small></h2><p class="small">The number and type of watches occuring within digests will almost certainly be responsible for application performance problems</p></div><div id="performace-expressions" data-y="500" data-x="1250" data-rotate-y="90" data-rotate-x="-90" data-z="-500" data-scale=".5" class="step"><h2> 
 performance<small>expressions</small></h2><p>Remember that expressions can be evaluated many times per $digest.</p><pre class="example"><div>&lt;input type=&quot;text&quot;</div><div>  ng-model=&quot;myInput&quot;</div><div>  ng-class=&quot;{ valid: /^shouldMatch$/.test(myInput) }&quot;</div><div>/&gt;</div></pre></div><div id="performace-ng-repeat" data-y="500" data-x="1250" data-rotate-y="90" data-rotate-x="-90" data-z="-1000" data-scale=".5" class="step"><h2> 
-performance<small>ng-repeat</small></h2><p><code>ng-repeat</code> acts as a force multiplier.</p><pre class="example"><div>&lt;tr ng-repeat=&quot;x in _.range(1e6)&quot;&gt;</div><div>  &lt;td&gt;{{ Math.log(x) }}&lt;/td&gt;</div><div>&lt;/tr&gt;</div></pre></div><div id="performance-bindonce" data-y="500" data-x="1250" data-rotate-y="90" data-rotate-x="-90" data-z="-1500" data-scale=".5" class="step"><h2>bindonce</h2><p>A nifty little library that has 'watch until defined' semantics</p><div class="small">Mirrors almost all of the <code>ng-*</code> directives</div><ul></ul><div class="sub-note"><a href="https://github.com/Pasvaz/bindonce">https://github.com/Pasvaz/bindonce</a></div><div class="sub-note">Bindonce demo<a href="http://plnkr.co/edit/jwrHVb?p=preview">http://plnkr.co/edit/jwrHVb?p=preview</a></div></div><div id="end" data-rotate-y="45" data-y="-500" data-z="1" class="step"><h1>The End</h1></div></div><script type="text/javascript" src="assets/impress.js"></script><script type="text/javascript" src="assets/impressConsole.js"></script><script type="text/javascript">impress().init();
+performance<small>ng-repeat</small></h2><p><code>ng-repeat</code> acts as a force multiplier.</p><pre class="example"><div>&lt;tr ng-repeat=&quot;x in _.range(1e6)&quot;&gt;</div><div>  &lt;td&gt;{{ Math.log(x) }}&lt;/td&gt;</div><div>&lt;/tr&gt;</div></pre></div><div id="performance-bindonce" data-y="500" data-x="1250" data-rotate-y="90" data-rotate-x="-90" data-z="-1500" data-scale=".5" class="step"><h2>bindonce</h2><p>A nifty little library that has 'watch until defined' semantics</p><div class="small">Mirrors almost all of the <code>ng-*</code> directives</div><ul></ul><div class="sub-note"><a href="https://github.com/Pasvaz/bindonce">https://github.com/Pasvaz/bindonce</a></div><div class="sub-note">Bindonce demo<a href="http://plnkr.co/edit/jwrHVb?p=preview">http://plnkr.co/edit/jwrHVb?p=preview</a></div></div><div id="integration" data-scale="1" data-x="2100" class="step"><h1>Core Framework Angular Integration</h1></div><div id="application-dependencies" data-y="500" data-x="2350" data-scale=".5" class="step"><h2>applications</h2><p>Angular applications and characteristics</p></div><div id="application-nodejs" data-y="500" data-x="2350" data-rotate-y="90" data-rotate-x="-90" data-z="-500" data-scale=".5" class="step"><h2> 
+applications<small>nodejs</small></h2><p class="small">It's popular for AngularJS client applications to be built and paired with nodejs. For this reason, you can expect that many will be built with the same tools.</p><pre class="example">angulartics [master] $ npm install
+angulartics [master] $ ./node_modules/.bin/bower install
+angulartics [master] $ ./node_modules/.bin/grunt
+Running "jshint:all" (jshint) task
+&gt;&gt; 16 files lint free.
+
+Running "karma:unit" (karma) task
+PhantomJS 1.9.7 (Mac OS X): Executed 23 of 23 SUCCESS (0.049 secs / 0.04 secs)
+
+Running "concat:dist" (concat) task
+File dist/angulartics-scroll.min.js created.
+
+Running "uglify:dist" (uglify) task
+File dist/angulartics.min.js created: 8.98 kB → 3.83 kB
+
+angulartics [master] $ grep "version" bower.json
+  "version": "0.16.1",		
+</pre></div><div id="application-bower" data-y="500" data-x="2350" data-rotate-y="90" data-rotate-x="-90" data-z="-1000" data-scale=".5" class="step"><h2> 
+applications<small>bower</small></h2><p class="small">Bower resolves and pulls client-side dependencies</p><pre class="example">{
+  "name": "SDPI-data-server",
+  "version": "0.1.3",
+  "main": [ 
+  	"dist/static/sdpi/app.js",
+  	"dist/static/sdpi/app.css"
+  ]
+  "dependencies": {
+    "angular": "1.2.3",
+    "angular-bootstrap": "0.10.0",
+    "jquery": "1.9.1",
+    "lodash": "2.4.1",
+    "rui-angular": "RallySoftware/bower-rui-angular#0.2.1",
+    "angulartics": "RallySoftware/angulartics#0.16.1",
+    "rally-style": "RallySoftware/rally-style.git#v0.2.15",
+    "rallymetrics": "RallySoftware/clientmetrics.git#0.4.1"
+  }
+}
+</pre><div class="sub-note"><a href="http://bower.io/">http://bower.io/</a></div></div><div id="ng-modules" data-y="1000" data-x="2350" data-scale=".5" class="step"><h2>ng modules</h2><p class="small">Declarative module definitions that can be loaded in any order</p><p class="small">Applications don't have a main, and module execution is delayed</p></div><div id="application-namespaces" data-y="500" data-x="2350" data-rotate-y="90" data-rotate-x="-90" data-z="-500" data-scale=".5" class="step"><h2> 
+ng modules<small>module definition</small></h2><p class="small">Larger apps need to define modules like namespaces with imports</p><h5>src/sdpi/app/index.js</h5><pre class="example small">angular.module('sdpi.app', ['sdpi.app.config', 'sdpi.app.perform'])
+</pre><h5>src/sdpi/app/perform/index.js</h5><pre class="example small">angular.module('sdpi.app.perform', ['sdpi.app.perform.controllers', 'sdpi.app.perform.services'])
+</pre><h5>src/sdpi/app/perform/controllers/router.js</h5><pre class="example small">angular.module('sdpi.app.perform.controllers.router', 
+	['rui.alm.services.wsapi']).controller('SdpiAppPerformRouterCtrl',
+	function($scope, $wsapi){
+	});</pre><h5>src/sdpi/app/index.html</h5><pre class="example small"><div>&lt;body ng-app=&quot;sdpi.app&quot;</div></pre></div><div id="application-configuration-phase" data-y="500" data-x="2350" data-rotate-y="90" data-rotate-x="-90" data-z="-1000" data-scale=".5" class="step"><h2> 
+ng modules<small>configuration phase</small></h2><p class="small">Delayed execution provides a configuration phase before singletons (services, factories, etc.) are instantiated.	</p><pre class="example small">angular.module('alm.pages.details.defect', [ 'rally.services.rally' ])
+	.run(function($rally, $rootScope){
+		var updateProject = function(){
+			$rootScope.selectedProject = $rally.app.selectedProject;	
+		}
+		$rally.$on('project', updateProject);
+		updateProject();
+	});</pre><h5>Runtime Script</h5><pre class="example small">var theNgAppToLoad ='alm.pages.details.defects';		
+var toBootstrap = ''+Math.random();
+var appContext = Rally.app.App;
+angular.module(toBootstrap, [theNgAppToLoad]).config(function($rallyProvider){
+	$rallyProvider.setAppContext(appContext);
+	$rallyProvider.pipe(coreEventBus);
+});
+angular.bootstrap(toBootstrap, $('#pageContent'));
+</pre><div class="sub-note"> 
+For some ideas <a href="https://github.com/pcw216/angular-appsdk">https://github.com/pcw216/angular-appsdk</a></div></div><div id="application-bootstrapping-overmind" data-y="500" data-x="2350" data-rotate-y="90" data-rotate-x="-90" data-z="-1500" data-scale=".5" class="step"><h2> 
+ng modules<small>overmind</small></h2><p class="small">Easy module isolation and lazy loading for Angular apps.</p><div class="sub-note">		<a href="https://github.com/geddski/overmind">https://github.com/geddski/overmind</a></div></div><div id="pitfalls" data-scale="1" data-x="3500" class="step"><h1>Common AngularJS Pitfalls</h1></div><div id="pitfalls-scope-prototype" data-y="500" data-x="3500" data-scale=".5" class="step"><h2> 
+pitfalls<small>prototype</small></h2><p class="small">Child scopes prototypically inherit from their parents</p><pre class="example">$child = $scope.$new();
+expect(Object.getPrototypeOf($child)).toEqual($scope);
+</pre></div><div id="pitfalls-scope-prototype-nested" data-y="500" data-x="3500" data-rotate-y="90" data-rotate-x="-90" data-z="-500" data-scale=".5" class="step"><h2> 
+pitfalls<small>prototype and child scopes</small></h2><pre class="example"><div>&lt;div ng-controller=&quot;RootCtrl&quot;&gt;</div><div>  &lt;div&gt;{{name}}&lt;/div&gt;</div><div>  &lt;div ng-controller=&quot;ChildCtrl&quot;&gt;</div><div>    &lt;span&gt;{{name}}&lt;/span&gt;</div><div>  &lt;/div&gt;</div><div>&lt;/div&gt;</div></pre><pre class="example">module.controller('RootCtrl', function($scope){
+	$scope.name = 'foo';
+})
+module.controller('ChildCtrl', function($scope){
+	$scope.name = 'bar'
+});</pre><pre class="example"><div>&lt;div&gt;</div><div>  &lt;div&gt;foo&lt;/div&gt;</div><div>  &lt;div&gt;</div><div>    &lt;span&gt;bar&lt;/span&gt;</div><div>  &lt;/div&gt;</div><div>&lt;/div&gt;</div></pre></div><div id="end" data-rotate-y="45" data-y="-500" data-z="1" class="step"><h1>The End</h1><div class="sub-note"><a href="https://github.com/pcw216/core_framework_ng_slides">https://github.com/pcw216/core_framework_ng_slides</a></div></div></div><script type="text/javascript" src="assets/impress.js"></script><script type="text/javascript" src="assets/impressConsole.js"></script><script type="text/javascript">impress().init();
 impressConsole().init('assets/impressConsole.css');
 //- impressConsole().registerKeyEvent([78], showSlideNumbers, window);
 </script></script></body></html>

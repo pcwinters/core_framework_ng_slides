@@ -55,7 +55,6 @@ Slides
 
 * Pitfalls
   * $scope prototypical inheritance
-  * 
 
 * CSS
   * Manipulating pure DOM, standard css
