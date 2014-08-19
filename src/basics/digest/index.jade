@@ -1,7 +1,10 @@
-.step(data-y='1500', data-scale='.5')
+#digest.step(data-y='1500', data-scale='.5')
 	h2 $scope.$digest
 	p how angular knows something has changed
-.step(data-y='1500', data-rotate-y='90', data-rotate-x='-90', data-z='-500', data-x='250', data-scale='.5')
+	.notes 
+		p 10 min
+
+#digest-src.step(data-y='1500', data-rotate-y='90', data-rotate-x='-90', data-z='-500', data-x='250', data-scale='.5')
 	h2 
 		| $scope.$digest
 		small 
@@ -9,6 +12,9 @@
 	h4 The angular $digest is based on dirty checking all 'watched' expressions
 	pre.example
 		include digestSrc.js
+	.notes 
+		p inner loop scope tree traversal
+		p 1 change in the system executes a $digest that evaluates all watch expressions
 
 #digest-hugo.step(data-y='1500', data-rotate-y='90', data-rotate-x='-90', data-z='-1000', data-x='250', data-scale='.5')
 	h2

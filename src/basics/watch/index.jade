@@ -1,8 +1,10 @@
-.step(data-y='1000', data-scale='.5')
+#watch.step(data-y='1000', data-scale='.5')
 	h2 $scope.$watch
 	p how you can be informed of a change on the $scope
+	.notes 
+		p 5 min
 
-.step(data-y='1000', data-rotate-y='90', data-rotate-x='-90', data-z='-500', data-x='250', data-scale='.5')
+#watch-property.step(data-y='1000', data-rotate-y='90', data-rotate-x='-90', data-z='-500', data-x='250', data-scale='.5')
 	h2 
 		| $scope.$watch
 		small model variables
@@ -17,7 +19,7 @@
 			expect(newValue).toEqual($scope.myData);
 		});
 
-.step(data-y='1000', data-rotate-y='90', data-rotate-x='-90', data-z='-1000', data-x='250', data-scale='.5')
+#watch-expression.step(data-y='1000', data-rotate-y='90', data-rotate-x='-90', data-z='-1000', data-x='250', data-scale='.5')
 	h2 
 		| $scope.$watch
 		small expressions
@@ -32,7 +34,7 @@
 			);
 		});
 
-.step(data-y='1000', data-rotate-y='90', data-rotate-x='-90', data-z='-1500', data-x='250', data-scale='.5')
+#watch-compile.step(data-y='1000', data-rotate-y='90', data-rotate-x='-90', data-z='-1500', data-x='250', data-scale='.5')
 	h2 
 		| $scope.$watch
 		small templates, $compile
@@ -42,5 +44,5 @@
 		linkFn = $compile("&lt;div&gt;{{appName}}&lt;/div&gt;")
 		linkFn($scope)
 		expect($scope.$watch).toHaveBeenCalledWith('appName')
-		
+	.sub-note You'll hear the terms compiling and linking.
 

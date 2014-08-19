@@ -2,6 +2,7 @@
 	h2 ng modules
 	p.small Declarative module definitions that can be loaded in any order
 	p.small Applications don't have a main, and module execution is delayed
+	.notes 20min
 
 #application-namespaces.step(data-y='500', data-x='2350', data-rotate-y='90', data-rotate-x='-90', data-z='-500', data-scale='.5')
 	h2 
@@ -56,10 +57,15 @@
 		| For some ideas 
 		a(href="https://github.com/pcw216/angular-appsdk") https://github.com/pcw216/angular-appsdk
 
+	.notes
+		p configuration lifecycle can set context outside of an app
+		p this application could be bootstrapped in a dashboard, ALM page, full page standalone app, etc, without needing to know
+
 #application-bootstrapping-overmind.step(data-y='500', data-x='2350', data-rotate-y='90', data-rotate-x='-90', data-z='-1500', data-scale='.5')
 	h2 
 		| ng modules
 		small overmind
-	p.small Easy module isolation and lazy loading for Angular apps.
+	p Overmind
+	p.small Easy module isolation and lazy loading for Angular apps
 	.sub-note 		
 		a(href="https://github.com/geddski/overmind") https://github.com/geddski/overmind

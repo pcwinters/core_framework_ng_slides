@@ -1,6 +1,6 @@
 #application-dependencies.step(data-y='500', data-x='2350', data-scale='.5')
 	h2 applications
-	p Angular applications and characteristics
+	p Angular apps and characteristics
 
 #application-nodejs.step(data-y='500', data-x='2350', data-rotate-y='90', data-rotate-x='-90', data-z='-500', data-scale='.5')
 	h2 
@@ -50,6 +50,38 @@
 		    "rallymetrics": "RallySoftware/clientmetrics.git#0.4.1"
 		  }
 		}
-
 	.sub-note
 		a(href="http://bower.io/") http://bower.io/
+
+#application-bower-tree.step(data-y='500', data-x='2350', data-rotate-y='90', data-rotate-x='-90', data-z='-1000', data-scale='.5')
+	h2 
+		| applications
+		small bower
+	pre.example.
+		SDPI-data-server [master] $ tree bower_components | head
+		bower_components
+		├── Lumenize
+		│   └── deploy
+		│       ├── Lumenize-min.js
+		│       └── Lumenize.js
+		├── angular
+		│   ├── README.md
+		│   ├── angular-csp.css
+		│   ├── angular.js
+		│   ├── angular.min.js
+		│   ├── angular.min.js.map
+		│   └── bower.json
+		├── angular-animate
+		│   ├── README.md
+		│   ├── angular-animate.js
+		│   ├── angular-animate.min.js
+		│   ├── angular-animate.min.js.map
+		│   └── bower.json
+		├── angular-bootstrap
+		│   ├── bower.json
+		│   ├── ui-bootstrap-tpls.js
+		
+	.notes
+		p unopinionated dependency management
+		p typically apps serve these content themselves statically
+		p the only expectation is that you will src these scripts

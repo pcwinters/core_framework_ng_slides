@@ -62,3 +62,14 @@ h5 small {
 body.impress-on-end .step:not(.active) {
   opacity: 0.7;
 }
+body.impress-on-purposes #start,
+body.impress-on-questions #start {
+  opacity: 1 !important;
+}
+#purposes h1,
+#questions h1 {
+  visibility: hidden;
+}
+.notes {
+  display: none;
+}

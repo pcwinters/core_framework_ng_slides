@@ -1,9 +1,9 @@
-<html><head><title></title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/><link href="assets/impressConsole.css" rel="stylesheet"/><link href="assets/bootstrap.css" rel="stylesheet"/><link href="index.css" rel="stylesheet"/></head><body><div id="impress"><div class="no-support-message">Sorry! Your browser is unable to load the Impress slideshow. Try reloading the page in Google Chrome or Safari.</div><div id="basics" data-scale="1" class="step"><h1>AngularJS Basics</h1></div><div id="scope" data-y="500" data-scale=".5" class="step"><h2>$scope</h2><p>the big angular application data model</p></div><div id="scope-def" data-y="500" data-scale=".5" data-rotate-y="90" class="step"><h2>What are Scopes?</h2><div class="small">scope is an object that refers to the application model. It is an execution context for expressions. Scopes are arranged in hierarchical structure which mimic the DOM structure of the application. Scopes can watch expressions and propagate events.</div><div class="sub-note"> 
+<html><head><title></title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/><link href="assets/impressConsole.css" rel="stylesheet"/><link href="assets/bootstrap.css" rel="stylesheet"/><link href="index.css" rel="stylesheet"/></head><body><div id="impress"><div class="no-support-message">Sorry! Your browser is unable to load the Impress slideshow. Try reloading the page in Google Chrome or Safari.</div><div id="start" data-x="-1000" class="step"><h1>AngularJS and the Core Framework</h1></div><div id="questions" data-x="-1000" data-y="250" class="step"><h1>AngularJS and the Core Framework				</h1><p class="small">Questions</p><ol class="small"><li>What are the performance characteristics of Angular?</li><li>How are dependencies required and built?</li><li>Which css pre-compiling tools are used and how this interacts with other Rally stylesheets?</li><li>What kind of implementation pitfalls have Angular devs experienced?</li><li>What kind of APIs do you think you need for further integration into ALM?</li></ol><div class="notes"><p>not covering css because angular just manipulates dom. we build stylesheets with appropriate selectors.</p></div></div><div id="purposes" data-x="-1000" data-y="150" class="step"><h1>AngularJS and the Core Framework</h1><p class="small">Topics</p><ul class="small"><li>AngularJS basics</li><li>AngularJS performance</li><li>Core Framework integration</li><li>AngularJS Pitfalls</li></ul></div><div id="basics" data-scale="1" class="step"><h1>AngularJS Basics</h1></div><div id="scope" data-y="500" data-scale=".5" class="step"><h2>$scope</h2><p>the big angular application data model</p><div class="notes"><p>what your application logic manipulates</p><p>the conduit for events and changes</p></div></div><div id="scope-def" data-y="500" data-scale=".5" class="step"><h2>What are Scopes?</h2><div class="small">scope is an object that refers to the application model. It is an execution context for expressions. Scopes are arranged in hierarchical structure which mimic the DOM structure of the application. Scopes can watch expressions and propagate events.</div><div class="sub-note"> 
 From <a href="https://docs.angularjs.org/guide/scope">AngularJS Guide</a></div></div><div id="rootScope" data-y="500" data-rotate-y="90" data-rotate-x="-90" data-z="-500" data-x="250" data-scale=".5" class="step"><h2>$rootScope</h2><div> 
 An application is bootstrapped with a <code>$rootScope</code></div><pre class="example">angular.module('myApp', []).run(function($rootScope){
 	$rootScope.appName = 'myApp';
 });
-</pre></div><div id="scope-new" data-y="500" data-rotate-y="90" data-rotate-x="-90" data-z="-1000" data-x="250" data-scale=".5" class="step"><h2>$scope.$new</h2><div>Scopes are forked to create children</div><pre class="example">angular.module('myApp', []).run(function($rootScope){
+</pre><div class="notes"><p>Dependency injection and autowiring</p></div></div><div id="scope-new" data-y="500" data-rotate-y="90" data-rotate-x="-90" data-z="-1000" data-x="250" data-scale=".5" class="step"><h2>$scope.$new</h2><div>Scopes are forked to create children</div><pre class="example">angular.module('myApp', []).run(function($rootScope){
 	$rootScope.appName = 'myApp';
 	$childScope = $rootScope.$new();
 	expect($childScope.appName).toEqual('myApp');
@@ -23,21 +23,20 @@ An application is bootstrapped with a <code>$rootScope</code></div><pre class="e
 	});
 	
 });
-</pre></div><div id="scope-and-dom" data-y="500" data-rotate-y="90" data-rotate-x="-90" data-z="-2000" data-x="250" data-scale=".5" class="step"><h2>$scope and the DOM</h2><div>Every DOM element is linked to a scope</div><div class="container-fluid"><div class="row"><div class="col-md-6"><pre class="example">$scope.items = [
+</pre><div class="notes"><p>siblings will be created at branching points in the COM</p></div></div><div id="scope-and-dom" data-y="500" data-rotate-y="90" data-rotate-x="-90" data-z="-2000" data-x="250" data-scale=".5" class="step"><h2>$scope and the DOM</h2><div>Every DOM element is linked to a scope</div><div class="container-fluid"><div class="row"><div class="col-md-6"><pre class="example">$scope.items = [
 	{name: 'Item1'},
 	{name: 'Item2'}
-]</pre></div><div class="col-md-6"><pre class="example"><div>&lt;ul&gt;</div><div> &lt;li</div><div>   ng-repeat=&quot;item in items&quot;&gt;</div><div>     {{item.name}}</div><div> &lt;/li&gt;</div><div>&lt;/ul&gt;</div></pre></div></div></div><div class="sub-note">You'll hear the terms compiling and linking.</div><div class="sub-note">* sdpi demo *</div></div><div id="scope-and-dom-ng-controller" data-y="500" data-rotate-y="180" data-rotate-x="-90" data-z="-2000" data-x="250" data-scale=".5" class="step"><h2>$scope and the DOM<small>ng-controller</small></h2><div>In a simple app, $new is called by the ng-controller</div><pre class="example"><div>&lt;body ng-app=&quot;MyApp&quot;&gt;</div><div>  &lt;div id=&quot;content&quot; ng-controller=&quot;MyController&quot;/&gt;</div><div>&lt;/div&gt;</div></pre><pre class="example">var bodyScope = $('body').scope()
+]</pre></div><div class="col-md-6"><pre class="example"><div>&lt;ul&gt;</div><div> &lt;li</div><div>   ng-repeat=&quot;item in items&quot;&gt;</div><div>     {{item.name}}</div><div> &lt;/li&gt;</div><div>&lt;/ul&gt;</div></pre></div></div></div><div class="notes"><p>li's are a DOM branching point referenced before</p></div></div><div id="scope-and-dom-ng-controller" data-y="500" data-rotate-y="90" data-rotate-x="-90" data-z="-2000" data-x="250" data-scale=".5" class="step"><h2>$scope and the DOM<small>ng-controller</small></h2><div>In a simple app, $new is called by the ng-controller</div><pre class="example"><div>&lt;body ng-app=&quot;MyApp&quot;&gt;</div><div>  &lt;div id=&quot;content&quot; ng-controller=&quot;MyController&quot;/&gt;</div><div>&lt;/div&gt;</div></pre><pre class="example">var bodyScope = $('body').scope()
 var contentScope = $('#content').scope()
 expect(contentScope).not.toEqual(bodyScope)
-expect(contentScope.$parent).toEqual(bodyScope)
-</pre><div class="sub-note">You'll hear the terms compiling and linking.</div><div class="sub-note">* sdpi demo *</div></div><div data-y="1000" data-scale=".5" class="step"><h2>$scope.$watch</h2><p>how you can be informed of a change on the $scope</p></div><div data-y="1000" data-rotate-y="90" data-rotate-x="-90" data-z="-500" data-x="250" data-scale=".5" class="step"><h2> 
+expect(contentScope.$parent).toEqual(bodyScope)</pre></div><div id="watch" data-y="1000" data-scale=".5" class="step"><h2>$scope.$watch</h2><p>how you can be informed of a change on the $scope</p><div class="notes"> <p>5 min</p></div></div><div id="watch-property" data-y="1000" data-rotate-y="90" data-rotate-x="-90" data-z="-500" data-x="250" data-scale=".5" class="step"><h2> 
 $scope.$watch<small>model variables</small></h2><p> 
 Watches allow you to establish listeners for model <small>($scope)</small> updates</p><pre class="example">$scope.myData = 'fooBar';
 $scope.$watch('myData', function(newValue, oldValue){ 
 	expect(newValue).toEqual('fooBar');
 	expect(newValue).toEqual($scope.myData);
 });
-</pre></div><div data-y="1000" data-rotate-y="90" data-rotate-x="-90" data-z="-1000" data-x="250" data-scale=".5" class="step"><h2> 
+</pre></div><div id="watch-expression" data-y="1000" data-rotate-y="90" data-rotate-x="-90" data-z="-1000" data-x="250" data-scale=".5" class="step"><h2> 
 $scope.$watch<small>expressions</small></h2><p>Watches actually evaluate expressions w/ $scope as context</p><pre class="example">$scope.myData = 100;
 $scope.someFunction = function(d){ return d-1};
 $scope.$watch('myData + 1 + someFunction(myData)', function(newValue, oldValue){ 
@@ -46,11 +45,11 @@ $scope.$watch('myData + 1 + someFunction(myData)', function(newValue, oldValue){
 		$scope.$eval('myData + 1 + someFunction(myData)')
 	);
 });
-</pre></div><div data-y="1000" data-rotate-y="90" data-rotate-x="-90" data-z="-1500" data-x="250" data-scale=".5" class="step"><h2> 
+</pre></div><div id="watch-compile" data-y="1000" data-rotate-y="90" data-rotate-x="-90" data-z="-1500" data-x="250" data-scale=".5" class="step"><h2> 
 $scope.$watch<small>templates, $compile</small></h2><p>Angular compiles templates and places watches on all expressions in order to update the DOM</p><pre class="example">$scope = jasmine.createSpyObj('$scope', ['$watch'])
 linkFn = $compile("&lt;div&gt;{{appName}}&lt;/div&gt;")
 linkFn($scope)
-expect($scope.$watch).toHaveBeenCalledWith('appName')</pre></div><div data-y="1500" data-scale=".5" class="step"><h2>$scope.$digest</h2><p>how angular knows something has changed</p></div><div data-y="1500" data-rotate-y="90" data-rotate-x="-90" data-z="-500" data-x="250" data-scale=".5" class="step"><h2> 
+expect($scope.$watch).toHaveBeenCalledWith('appName')</pre><div class="sub-note">You'll hear the terms compiling and linking.</div></div><div id="digest" data-y="1500" data-scale=".5" class="step"><h2>$scope.$digest</h2><p>how angular knows something has changed</p><div class="notes"> <p>10 min</p></div></div><div id="digest-src" data-y="1500" data-rotate-y="90" data-rotate-x="-90" data-z="-500" data-x="250" data-scale=".5" class="step"><h2> 
 $scope.$digest<small> <a href="https://github.com/angular/angular.js/blob/a19131494c7661d8dee04aa9a422c1f171f249e0/src/ng/rootScope.js#L675">angularjs source</a></small></h2><h4>The angular $digest is based on dirty checking all 'watched' expressions</h4><pre class="example">$digest: function() {
   do { // "while dirty" loop
     dirty = false;
@@ -69,11 +68,11 @@ $scope.$digest<small> <a href="https://github.com/angular/angular.js/blob/a19131
     } while ((current = next));
   } while (dirty);
 }
-</pre></div><div id="digest-hugo" data-y="1500" data-rotate-y="90" data-rotate-x="-90" data-z="-1000" data-x="250" data-scale=".5" class="step"><h2>$scope.$digest<small>hugo, rally-beacon	</small></h2><div class="container-fluid"><div class="row"><div class="col-md-6"><img src="assets/hugo_digest.png" class="hugo"/></div><div class="col-md-6"><h3>Who calls $digest?</h3><ul class="root"><li>$q - promises</li><li>$http - ajax service</li><li>$timeout - async events</li><li> <span>DOM directives:				</span><ul><li> 
-ng-click and<br/>ng-:event</li><li>ng-repeat</li><li>ng-if, ng-show</li></ul></li><li>many others</li></ul></div></div></div></div><div id="performance" data-scale="1" data-x="1100" class="step"><h1>AngularJS Performance</h1></div><div id="performace-watch" data-y="500" data-x="1250" data-scale=".5" class="step"><h2> 
+</pre><div class="notes"> <p>inner loop scope tree traversal</p><p>1 change in the system executes a $digest that evaluates all watch expressions</p></div></div><div id="digest-hugo" data-y="1500" data-rotate-y="90" data-rotate-x="-90" data-z="-1000" data-x="250" data-scale=".5" class="step"><h2>$scope.$digest<small>hugo, rally-beacon	</small></h2><div class="container-fluid"><div class="row"><div class="col-md-6"><img src="assets/hugo_digest.png" class="hugo"/></div><div class="col-md-6"><h3>Who calls $digest?</h3><ul class="root"><li>$q - promises</li><li>$http - ajax service</li><li>$timeout - async events</li><li> <span>DOM directives:				</span><ul><li> 
+ng-click and<br/>ng-:event</li><li>ng-repeat</li><li>ng-if, ng-show</li></ul></li><li>many others</li></ul></div></div></div></div><div id="performance" data-scale="1" data-x="1100" class="step"><h1>AngularJS Performance</h1><div class="notes"><p>13 min</p></div></div><div id="performace-watch" data-y="500" data-x="1250" data-scale=".5" class="step"><h2> 
 performance<small>$watch and $digest</small></h2><p class="small">The number and type of watches occuring within digests will almost certainly be responsible for application performance problems</p></div><div id="performace-expressions" data-y="500" data-x="1250" data-rotate-y="90" data-rotate-x="-90" data-z="-500" data-scale=".5" class="step"><h2> 
 performance<small>expressions</small></h2><p>Remember that expressions can be evaluated many times per $digest.</p><pre class="example"><div>&lt;input type=&quot;text&quot;</div><div>  ng-model=&quot;myInput&quot;</div><div>  ng-class=&quot;{ valid: /^shouldMatch$/.test(myInput) }&quot;</div><div>/&gt;</div></pre></div><div id="performace-ng-repeat" data-y="500" data-x="1250" data-rotate-y="90" data-rotate-x="-90" data-z="-1000" data-scale=".5" class="step"><h2> 
-performance<small>ng-repeat</small></h2><p><code>ng-repeat</code> acts as a force multiplier.</p><pre class="example"><div>&lt;tr ng-repeat=&quot;x in _.range(1e6)&quot;&gt;</div><div>  &lt;td&gt;{{ Math.log(x) }}&lt;/td&gt;</div><div>&lt;/tr&gt;</div></pre></div><div id="performance-bindonce" data-y="500" data-x="1250" data-rotate-y="90" data-rotate-x="-90" data-z="-1500" data-scale=".5" class="step"><h2>bindonce</h2><p>A nifty little library that has 'watch until defined' semantics</p><div class="small">Mirrors almost all of the <code>ng-*</code> directives</div><ul></ul><div class="sub-note"><a href="https://github.com/Pasvaz/bindonce">https://github.com/Pasvaz/bindonce</a></div><div class="sub-note">Bindonce demo<a href="http://plnkr.co/edit/jwrHVb?p=preview">http://plnkr.co/edit/jwrHVb?p=preview</a></div></div><div id="integration" data-scale="1" data-x="2100" class="step"><h1>Core Framework Angular Integration</h1></div><div id="application-dependencies" data-y="500" data-x="2350" data-scale=".5" class="step"><h2>applications</h2><p>Angular applications and characteristics</p></div><div id="application-nodejs" data-y="500" data-x="2350" data-rotate-y="90" data-rotate-x="-90" data-z="-500" data-scale=".5" class="step"><h2> 
+performance<small>ng-repeat</small></h2><p><code>ng-repeat</code> acts as a force multiplier.</p><pre class="example"><div>&lt;tr ng-repeat=&quot;x in _.range(1e6)&quot;&gt;</div><div>  &lt;td&gt;{{ Math.log(x) }}&lt;/td&gt;</div><div>&lt;/tr&gt;</div></pre><div class="notes"><p>number of watches proportional to the number of items in the repeated collection</p></div></div><div id="performance-bindonce" data-y="500" data-x="1250" data-rotate-y="90" data-rotate-x="-90" data-z="-1500" data-scale=".5" class="step"><h2>bindonce</h2><p>A nifty little library that has 'watch until defined' semantics</p><div class="small">Mirrors almost all of the <code>ng-*</code> directives</div><ul></ul><div class="sub-note"><a href="https://github.com/Pasvaz/bindonce">https://github.com/Pasvaz/bindonce</a></div><div class="sub-note">Bindonce demo<a href="http://plnkr.co/edit/jwrHVb?p=preview">http://plnkr.co/edit/jwrHVb?p=preview</a></div></div><div id="integration" data-scale="1" data-x="2100" class="step"><h1>Core Framework Angular Integration</h1><div class="notes">15 min</div></div><div id="application-dependencies" data-y="500" data-x="2350" data-scale=".5" class="step"><h2>applications</h2><p>Angular apps and characteristics</p></div><div id="application-nodejs" data-y="500" data-x="2350" data-rotate-y="90" data-rotate-x="-90" data-z="-500" data-scale=".5" class="step"><h2> 
 applications<small>nodejs</small></h2><p class="small">It's popular for AngularJS client applications to be built and paired with nodejs. For this reason, you can expect that many will be built with the same tools.</p><pre class="example">angulartics [master] $ npm install
 angulartics [master] $ ./node_modules/.bin/bower install
 angulartics [master] $ ./node_modules/.bin/grunt
@@ -109,8 +108,30 @@ applications<small>bower</small></h2><p class="small">Bower resolves and pulls c
     "rally-style": "RallySoftware/rally-style.git#v0.2.15",
     "rallymetrics": "RallySoftware/clientmetrics.git#0.4.1"
   }
-}
-</pre><div class="sub-note"><a href="http://bower.io/">http://bower.io/</a></div></div><div id="ng-modules" data-y="1000" data-x="2350" data-scale=".5" class="step"><h2>ng modules</h2><p class="small">Declarative module definitions that can be loaded in any order</p><p class="small">Applications don't have a main, and module execution is delayed</p></div><div id="application-namespaces" data-y="500" data-x="2350" data-rotate-y="90" data-rotate-x="-90" data-z="-500" data-scale=".5" class="step"><h2> 
+}</pre><div class="sub-note"><a href="http://bower.io/">http://bower.io/</a></div></div><div id="application-bower-tree" data-y="500" data-x="2350" data-rotate-y="90" data-rotate-x="-90" data-z="-1000" data-scale=".5" class="step"><h2> 
+applications<small>bower</small></h2><pre class="example">SDPI-data-server [master] $ tree bower_components | head
+bower_components
+├── Lumenize
+│   └── deploy
+│       ├── Lumenize-min.js
+│       └── Lumenize.js
+├── angular
+│   ├── README.md
+│   ├── angular-csp.css
+│   ├── angular.js
+│   ├── angular.min.js
+│   ├── angular.min.js.map
+│   └── bower.json
+├── angular-animate
+│   ├── README.md
+│   ├── angular-animate.js
+│   ├── angular-animate.min.js
+│   ├── angular-animate.min.js.map
+│   └── bower.json
+├── angular-bootstrap
+│   ├── bower.json
+│   ├── ui-bootstrap-tpls.js
+</pre><div class="notes"><p>unopinionated dependency management</p><p>typically apps serve these content themselves statically</p><p>the only expectation is that you will src these scripts</p></div></div><div id="ng-modules" data-y="1000" data-x="2350" data-scale=".5" class="step"><h2>ng modules</h2><p class="small">Declarative module definitions that can be loaded in any order</p><p class="small">Applications don't have a main, and module execution is delayed</p><div class="notes">20min</div></div><div id="application-namespaces" data-y="500" data-x="2350" data-rotate-y="90" data-rotate-x="-90" data-z="-500" data-scale=".5" class="step"><h2> 
 ng modules<small>module definition</small></h2><p class="small">Larger apps need to define modules like namespaces with imports</p><h5>src/sdpi/app/index.js</h5><pre class="example small">angular.module('sdpi.app', ['sdpi.app.config', 'sdpi.app.perform'])
 </pre><h5>src/sdpi/app/perform/index.js</h5><pre class="example small">angular.module('sdpi.app.perform', ['sdpi.app.perform.controllers', 'sdpi.app.perform.services'])
 </pre><h5>src/sdpi/app/perform/controllers/router.js</h5><pre class="example small">angular.module('sdpi.app.perform.controllers.router', 
@@ -133,8 +154,8 @@ angular.module(toBootstrap, [theNgAppToLoad]).config(function($rallyProvider){
 });
 angular.bootstrap(toBootstrap, $('#pageContent'));
 </pre><div class="sub-note"> 
-For some ideas <a href="https://github.com/pcw216/angular-appsdk">https://github.com/pcw216/angular-appsdk</a></div></div><div id="application-bootstrapping-overmind" data-y="500" data-x="2350" data-rotate-y="90" data-rotate-x="-90" data-z="-1500" data-scale=".5" class="step"><h2> 
-ng modules<small>overmind</small></h2><p class="small">Easy module isolation and lazy loading for Angular apps.</p><div class="sub-note">		<a href="https://github.com/geddski/overmind">https://github.com/geddski/overmind</a></div></div><div id="pitfalls" data-scale="1" data-x="3500" class="step"><h1>Common AngularJS Pitfalls</h1></div><div id="pitfalls-scope-prototype" data-y="500" data-x="3500" data-scale=".5" class="step"><h2> 
+For some ideas <a href="https://github.com/pcw216/angular-appsdk">https://github.com/pcw216/angular-appsdk</a></div><div class="notes"><p>configuration lifecycle can set context outside of an app</p><p>this application could be bootstrapped in a dashboard, ALM page, full page standalone app, etc, without needing to know</p></div></div><div id="application-bootstrapping-overmind" data-y="500" data-x="2350" data-rotate-y="90" data-rotate-x="-90" data-z="-1500" data-scale=".5" class="step"><h2> 
+ng modules<small>overmind</small></h2><p>Overmind</p><p class="small">Easy module isolation and lazy loading for Angular apps</p><div class="sub-note">		<a href="https://github.com/geddski/overmind">https://github.com/geddski/overmind</a></div></div><div id="pitfalls" data-scale="1" data-x="3500" class="step"><h1>Common AngularJS Pitfalls</h1></div><div id="pitfalls-scope-prototype" data-y="500" data-x="3500" data-scale=".5" class="step"><h2> 
 pitfalls<small>prototype</small></h2><p class="small">Child scopes prototypically inherit from their parents</p><pre class="example">$child = $scope.$new();
 expect(Object.getPrototypeOf($child)).toEqual($scope);
 </pre></div><div id="pitfalls-scope-prototype-nested" data-y="500" data-x="3500" data-rotate-y="90" data-rotate-x="-90" data-z="-500" data-scale=".5" class="step"><h2> 
@@ -143,7 +164,22 @@ pitfalls<small>prototype and child scopes</small></h2><pre class="example"><div>
 })
 module.controller('ChildCtrl', function($scope){
 	$scope.name = 'bar'
-});</pre><pre class="example"><div>&lt;div&gt;</div><div>  &lt;div&gt;foo&lt;/div&gt;</div><div>  &lt;div&gt;</div><div>    &lt;span&gt;bar&lt;/span&gt;</div><div>  &lt;/div&gt;</div><div>&lt;/div&gt;</div></pre></div><div id="end" data-rotate-y="45" data-y="-500" data-z="1" class="step"><h1>The End</h1><div class="sub-note"><a href="https://github.com/pcw216/core_framework_ng_slides">https://github.com/pcw216/core_framework_ng_slides</a></div></div></div><script type="text/javascript" src="assets/impress.js"></script><script type="text/javascript" src="assets/impressConsole.js"></script><script type="text/javascript">impress().init();
+});
+</pre></div><div id="pitfalls-scope-prototype-nested-result" data-y="500" data-x="3500" data-rotate-y="90" data-rotate-x="-90" data-z="-500" data-scale=".5" class="step"><h2> 
+pitfalls<small>prototype and child scopes</small></h2><pre class="example"><div>&lt;div&gt;</div><div>  &lt;div&gt;foo&lt;/div&gt;</div><div>  &lt;div&gt;</div><div>    &lt;span&gt;bar&lt;/span&gt;</div><div>  &lt;/div&gt;</div><div>&lt;/div&gt;</div></pre></div><div id="pitfalls-scope-prototype-nested-solution" data-y="500" data-x="3500" data-rotate-y="90" data-rotate-x="-90" data-z="-500" data-scale=".5" class="step"><h2> 
+pitfalls<small>prototype and child scopes</small></h2><pre class="example">module.controller('RootCtrl', function($scope){
+	$scope.state = {
+		name: 'foo'
+	};
+})
+module.controller('ChildCtrl', function($scope){
+	$scope.state.name = 'bar'
+});
+</pre></div><div id="pitfalls-module-definition" data-y="500" data-x="3500" data-rotate-y="90" data-rotate-x="-90" data-z="-1000" data-scale=".5" class="step"><h2> 
+pitfalls<small>defining modules</small></h2><p class="small">Place definitions in their own modules</p><h5>src/myApp.js - defines a module</h5><pre class="example">angular.module('myApp', []).run(function($log){
+	$log.info('My App has started');
+})</pre><h5>src/controllers/myCtrl.js - references a module</h5><pre class="example">angular.module('myApp').controller('MyCtrl', function($scope){
+});</pre></div><div id="end" data-rotate-y="45" data-y="-500" data-z="1" class="step"><h1>The End</h1><div class="sub-note"><a href="https://github.com/pcw216/core_framework_ng_slides">https://github.com/pcw216/core_framework_ng_slides</a></div></div></div><script type="text/javascript" src="assets/impress.js"></script><script type="text/javascript" src="assets/impressConsole.js"></script><script type="text/javascript">impress().init();
 impressConsole().init('assets/impressConsole.css');
 //- impressConsole().registerKeyEvent([78], showSlideNumbers, window);
 </script></script></body></html>

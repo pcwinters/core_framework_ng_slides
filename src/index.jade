@@ -10,6 +10,30 @@ html
 			.no-support-message
 				| Sorry! Your browser is unable to load the Impress slideshow. Try reloading the page in Google Chrome or Safari.
 			
+			#start.step(data-x="-1000")
+				h1 AngularJS and the Core Framework
+			#questions.step(data-x="-1000", data-y="250")
+				h1 AngularJS and the Core Framework				
+				p.small Questions
+				ol.small
+					li What are the performance characteristics of Angular?
+					li How are dependencies required and built?
+					li Which css pre-compiling tools are used and how this interacts with other Rally stylesheets?
+					li What kind of implementation pitfalls have Angular devs experienced?
+					li What kind of APIs do you think you need for further integration into ALM?
+				.notes
+					p not covering css because angular just manipulates dom. we build stylesheets with appropriate selectors.
+
+			#purposes.step(data-x="-1000", data-y="150")
+				h1 AngularJS and the Core Framework
+				p.small Topics
+				ul.small
+					li AngularJS basics
+					li AngularJS performance
+					li Core Framework integration
+					li AngularJS Pitfalls
+
+
 			include src/basics/index
 			include src/performance/index
 			include src/integration/index

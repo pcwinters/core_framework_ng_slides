@@ -50,6 +50,16 @@ h1, h2, h3, h4, h5
 	&:not(.active) 
 		opacity: 0
 
-body.impress-on-end
-	.step:not(.active)
-		opacity: 0.7
+body
+	&.impress-on-end
+		.step:not(.active)
+			opacity: 0.7
+	&.impress-on-purposes, &.impress-on-questions
+		#start
+			opacity: 1.0 !important
+#purposes, #questions
+	h1 
+		visibility: hidden
+
+.notes
+	display: none
